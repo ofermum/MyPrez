@@ -27,7 +27,7 @@ MYPREZ.administrations = [
     end: '2017-01-19'
   }, {
     president: 'George W. Bush',
-    image: 'BushJr.jpg',
+    image: 'BushJr.jpeg',
     administration: 'George W. Bush',
     start: '2001-01-20',
     end: '2009-01-19'
@@ -79,6 +79,66 @@ MYPREZ.administrations = [
     administration: 'Kennedy',
     start: '1961-01-20',
     end: '1963-11-21'
+  }, {
+    president: 'Dwight D. Eisenhower',
+    image: 'Eisenhower.jpg',
+    administration: 'Eisenhower',
+    start: '1953-01-20',
+    end: '1961-01-19'
+  }, {
+    president: 'Harry S. Truman',
+    image: 'Truman.jpg',
+    administration: 'Truman',
+    start: '1945-04-12',
+    end: '1953-01-19'
+  }, {
+    president: 'Franklin D. Roosevelt',
+    image: 'FDR.webp',
+    administration: 'Franklin D. Roosevelt',
+    start: '1933-03-04',
+    end: '1945-04-11'
+  }, {
+    president: 'Herbert Hoover',
+    image: 'Hoover.jpg',
+    administration: 'Hoover',
+    start: '1929-03-04',
+    end: '1933-03-03'
+  }, {
+    president: 'Calvin Coolidge',
+    image: 'Coolidge.png',
+    administration: 'Coolidge',
+    start: '1923-08-02',
+    end: '1929-03-03'
+  }, {
+    president: 'Warren G. Harding',
+    image: 'Harding.jpg',
+    administration: 'Harding',
+    start: '1921-03-04',
+    end: '1923-08-01'
+  }, {
+    president: 'Woodrow Wilson',
+    image: 'Wilson.jpg',
+    administration: 'Wilson',
+    start: '1913-03-04',
+    end: '1921-03-03'
+  }, {
+    president: 'William Howard Taft',
+    image: 'Taft.jpg',
+    administration: 'Taft',
+    start: '1909-03-04',
+    end: '1913-03-03'
+  }, {
+    president: 'Theodore Roosevelt',
+    image: 'TeddyRoosevelt.jpg',
+    administration: 'Theodore Roosevelt',
+    start: '1901-09-14',
+    end: '1909-03-03'
+  }, {
+    president: 'William McKinley',
+    image: 'McKinley.webp',
+    administration: 'McKinley',
+    start: '1897-03-04',
+    end: '1901-09-13'
   }
 ];
 
