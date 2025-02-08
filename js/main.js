@@ -1,4 +1,4 @@
-/* global MYPREZ */
+/* globals MYPREZ, gtag */
 (function() {
   const birthdayInput = document.getElementById('birthday'),
         wikipediaImageLink = document.getElementById('wikipedia-image-link'),
@@ -17,6 +17,10 @@
       wikipediaLink.innerText = 'Wikipedia: ' + administration.president;
       wikipediaLink.href = administration.href;
       result.innerText = 'You are a child of the ' + administration.administration + ' administration!';
+
+      gtag('event', 'select_date', {
+        'president': administration.administration
+      });
     }
   }
 
