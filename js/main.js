@@ -11,16 +11,31 @@
       const birthdayTime = new Date(birthdayInput.value).getTime(),
             administration = MYPREZ.findAdministration(birthdayTime);
 
-      pic.src = 'img/' + administration.image;
-      pic.alt = administration.president;
-      wikipediaImageLink.href = administration.href;
-      wikipediaLink.innerText = 'Wikipedia: ' + administration.president;
-      wikipediaLink.href = administration.href;
-      result.innerText = 'You are a child of the ' + administration.administration + ' administration!';
+      if (administration) {
+        wikipediaImageLink.href = administration.href;
+        pic.src = 'img/' + administration.image;
+        pic.alt = administration.president;
+        wikipediaLink.href = administration.href;
+        wikipediaLink.innerText = 'Wikipedia: ' + administration.president;
+        result.className = '';
+        result.innerText = 'You are a child of the ' + administration.administration + ' administration!';
 
-      gtag('event', 'select_date', {
-        'president': administration.administration
-      });
+        gtag('event', 'select_date', {
+          'president': administration.administration
+        });
+      } else {
+        wikipediaImageLink.href = '';
+        pic.src = '';
+        pic.alt = '';
+        wikipediaLink.href = '';
+        wikipediaLink.innerText = '';
+        result.className = 'error';
+        result.innerText = 'Could not determine administration. Only dates after 1900 are supported.';
+        gtag('event', 'error', {
+          'type': 'Administration not found',
+          'date': birthdayInput.value
+        });
+      }
     }
   }
 

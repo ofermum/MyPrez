@@ -15,3 +15,7 @@ p {
   display: block;
   font-size: smaller;
 }
+
+.error {
+  color: red;
+}
