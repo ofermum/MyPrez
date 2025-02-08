@@ -1,9 +1,10 @@
 /* global MYPREZ */
 (function() {
   const birthdayInput = document.getElementById('birthday'),
-        link = document.getElementById('wikipedia_link'),
+        wikipediaImageLink = document.getElementById('wikipedia-image-link'),
+        wikipediaLink = document.getElementById('wikipedia-link'),
         pic = document.getElementById('pic'),
-        resultP = document.getElementById('result');
+        result = document.getElementById('result');
 
   function onDateChange() {
     if (birthdayInput.value) {
@@ -12,8 +13,10 @@
 
       pic.src = 'img/' + administration.image;
       pic.alt = administration.president;
-      link.href = administration.href;
-      resultP.innerText = 'You are a child of the ' + administration.administration + ' administration!';
+      wikipediaImageLink.href = administration.href;
+      wikipediaLink.innerText = 'Wikipedia: ' + administration.president;
+      wikipediaLink.href = administration.href;
+      result.innerText = 'You are a child of the ' + administration.administration + ' administration!';
     }
   }
 
