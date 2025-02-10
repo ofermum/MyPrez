@@ -9,13 +9,15 @@
       pic;
 
   function onDateChange() {
+    wikipediaLinks.replaceChildren();  // Delete children
+
     if (birthdayInput.value) {
-      const birthdayTime = new Date(birthdayInput.value).getTime(),
-            administration = MYPREZ.findAdministration(birthdayTime);
+      const birthdayDate = new Date(birthdayInput.value),
+            birthdayTime = birthdayDate.getTime(),
+            administration = MYPREZ.findAdministration(birthdayTime),
+            today = new Date();
 
-      wikipediaLinks.replaceChildren();  // Delete children
-
-      if (administration) {
+      if (administration && birthdayDate < today) {
         wikipediaImageLink = document.createElement('a');
         wikipediaImageLink.href = administration.href;
 
@@ -41,13 +43,15 @@
         });
       } else {
         result.className = 'error';
-        result.innerText = 'Could not determine administration. Only dates after 1900 are supported.';
+        result.innerText = 'Could not determine administration. Only dates between 1900 and today are supported.';
 
         gtag('event', 'error', {
           'type': 'Administration not found',
           'date': birthdayInput.value
         });
       }
+    } else {  // Use case: Clear/Reset date picker
+      result.innerText = '';
     }
   }
 
