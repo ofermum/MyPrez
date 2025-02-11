@@ -1,60 +1,92 @@
 /* globals MYPREZ, gtag */
 (function() {
-  const birthdayInput = document.getElementById('birthday'),
+  const monthSelector = document.getElementById('month'),
+        dayInput = document.getElementById('day'),
+        yearInput = document.getElementById('year'),
+        tellMeButton = document.getElementById('tell-me'),
         wikipediaLinks = document.getElementById('wikipedia-links'),
-        result = document.getElementById('result');
+        resultP = document.getElementById('result');
 
-  let wikipediaImageLink,
-      wikipediaLink,
-      pic;
+  function isValidDate() {
+    let birthday;
 
-  function onDateChange() {
-    wikipediaLinks.replaceChildren();  // Delete children
+    if (monthSelector.value === '--Month--') {
+      return false;
+    }
 
-    if (birthdayInput.value) {
-      const birthdayDate = new Date(birthdayInput.value),
-            birthdayTime = birthdayDate.getTime(),
-            administration = MYPREZ.findAdministration(birthdayTime),
-            today = new Date();
+    if (!Number.isInteger(parseFloat(dayInput.value)) || !Number.isInteger(parseFloat(yearInput.value))) {
+      return false;
+    }
 
-      if (administration && birthdayDate < today) {
-        wikipediaImageLink = document.createElement('a');
-        wikipediaImageLink.href = administration.href;
+    birthday = new Date(monthSelector.value + '/' + dayInput.value + '/' + yearInput.value);
 
-        pic = document.createElement('img');
-        pic.src = 'img/' + administration.image;
-        pic.alt = administration.president;
+    if (isNaN(birthday)) {
+      return false;
+    }
 
-        wikipediaImageLink.appendChild(pic);
+    return true;
+  }
 
-        wikipediaLink = document.createElement('a');
-        wikipediaLink.href = administration.href;
-        wikipediaLink.id = 'wikipedia-link';
-        wikipediaLink.textContent = 'Wikipedia: ' + administration.president;
+  function isSupportedDate() {
+    let birthday,
+        today;
 
-        wikipediaLinks.appendChild(wikipediaImageLink);
-        wikipediaLinks.appendChild(wikipediaLink);
+    if (parseInt(yearInput.value) < 1900) {
+      return false;
+    }
 
-        result.className = '';
-        result.textContent = 'You are a child of the ' + administration.administration + ' administration!';
+    birthday = new Date(monthSelector.value + '/' + dayInput.value + '/' + yearInput.value);
+    today = new Date();
 
-        gtag('event', 'select_date', {
-          'president': administration.administration
-        });
+    if (birthday > today) {
+      return false;
+    }
+
+    return true;
+  }
+
+  function showError(message) {
+    resultP.className = 'error';
+    resultP.innerText = message;
+  }
+
+  function tellMe() {
+    wikipediaLinks.replaceChildren();  // Delete existing content
+
+    if (isValidDate()) {
+      if (isSupportedDate()) {
+        const birthday = new Date(monthSelector.value + '/' + dayInput.value + '/' + yearInput.value);
+        const administration = MYPREZ.findAdministration(birthday.getTime());
+
+        if (administration) {
+          const wikipediaImageLink = document.createElement('a'),
+                pic = document.createElement('img'),
+                wikipediaLink = document.createElement('a');
+
+          wikipediaImageLink.href = administration.href;
+          pic.src = 'img/' + administration.image;
+          pic.alt = administration.president;
+          wikipediaImageLink.appendChild(pic);
+
+          wikipediaLink.href = administration.href;
+          wikipediaLink.id = 'wikipedia-link';
+          wikipediaLink.textContent = 'Wikipedia: ' + administration.president;
+
+          wikipediaLinks.appendChild(wikipediaImageLink);
+          wikipediaLinks.appendChild(wikipediaLink);
+
+          resultP.className = '';
+          resultP.textContent = 'You are a child of the ' + administration.administration + ' administration!';
+        } else {
+          showError('Unexpected error. Could not determine administration.');
+        }
       } else {
-        result.className = 'error';
-        result.innerText = 'Could not determine administration. Only dates between 1900 and today are supported.';
-
-        gtag('event', 'error', {
-          'type': 'Administration not found',
-          'date': birthdayInput.value
-        });
+        showError('Only dates between 1900 and today are supported.');
       }
-    } else {  // Use case: Clear/Reset date picker
-      result.innerText = '';
+    } else {
+      showError('Invalid date.');
     }
   }
 
-  birthdayInput.max = new Date().toISOString().split('T')[0];  // Set to today's date
-  birthdayInput.addEventListener('change', onDateChange);
+  tellMeButton.addEventListener('click', tellMe);
 })();

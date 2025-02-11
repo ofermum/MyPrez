@@ -25,10 +25,27 @@
 <body>
   <h1>During which presidential administration were you born?</h1>
   <p>
-    <label for="birthday">Your birthday:</label>
-    <input type="date" name="birthday" id="birthday" min="1900-01-01">
+    <span>Your birthday</span>
+    <select id="month">
+      <option>--Month--</option>
+      <option>January</option>
+      <option>February</option>
+      <option>March</option>
+      <option>April</option>
+      <option>May</option>
+      <option>June</option>
+      <option>July</option>
+      <option>August</option>
+      <option>September</option>
+      <option>October</option>
+      <option>November</option>
+      <option>December</option>
+    </select>
+    <input id="day" type="number" placeholder="DD">
+    <input id="year" type="number" placeholder="YYYY">
   </p>
-  <p id = 'wikipedia-links'></p>
+  <button id="tell-me">Tell Me</button>
+  <p id="wikipedia-links"></p>
   <p id="result"></p>
   <script src="js/myprez.js"></script>
   <script src="js/main.js"></script>
