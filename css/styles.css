@@ -37,10 +37,12 @@ input[type=number] {
 #month {
   -webkit-appearance: none;
   background-color: transparent;  /* Fx */
+  color: black;  /* iOS Safari */
 }
 
 #month, #day, #year {
   border: 0;
+  font-size: 16px;  /* Prevent zooming on iOS Safari */
 }
 
 #day, #year {
