@@ -77,11 +77,20 @@
 
           resultP.className = '';
           resultP.textContent = 'You are a child of the ' + administration.administration + ' administration!';
+
+          gtag('event', 'success', {
+            'president': administration.administration
+          });
         } else {
           showError('Unexpected error. Could not determine administration.');
+
+          gtag('event', 'error', {
+            'type': 'Administration not found',
+            'date': birthday.toString()
+          });
         }
       } else {
-        showError('Only dates between 1900 and today are supported.');
+        showError('Please enter a date between 1900 and today.');
       }
     } else {
       showError('Invalid date.');

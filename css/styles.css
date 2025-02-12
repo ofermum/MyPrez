@@ -23,12 +23,6 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-#inputs {
-  width: 220px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid lightgray;
-}
-
 #label {
   display: block;
   margin-bottom: 10px;
@@ -48,6 +42,13 @@ input[type=number] {
 #day, #year {
   width: 50px;
   margin-left: 5px;
+}
+
+#underline {
+  display: block;
+  width: 220px;
+  height: 10px;
+  border-bottom: 1px solid lightgray;
 }
 
 #tell-me {
