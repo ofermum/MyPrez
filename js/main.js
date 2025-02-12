@@ -10,7 +10,7 @@
   function isValidDate() {
     let birthday;
 
-    if (monthSelector.value === '--Month--') {
+    if (!monthSelector.value) {
       return false;
     }
 

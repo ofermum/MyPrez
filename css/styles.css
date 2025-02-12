@@ -11,6 +11,49 @@ p {
   font-size: 16px;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Fx */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#inputs {
+  width: 275px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+#label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#month {
+  -webkit-appearance: none;
+  background-color: transparent;  /* Fx */
+}
+
+#month, #day, #year {
+  border: 0;
+}
+
+#day, #year {
+  width: 60px;
+  margin-left: 20px;
+}
+
+#tell-me {
+  width: 100px;
+  height: 40px;
+  font-size: 16px;
+}
+
 #wikipedia-link {
   display: block;
   font-size: smaller;
