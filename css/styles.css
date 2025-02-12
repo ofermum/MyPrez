@@ -24,7 +24,7 @@ input[type=number] {
 }
 
 #inputs {
-  width: 275px;
+  width: 220px;
   padding-bottom: 10px;
   border-bottom: 1px solid lightgray;
 }
@@ -46,8 +46,8 @@ input[type=number] {
 }
 
 #day, #year {
-  width: 60px;
-  margin-left: 20px;
+  width: 50px;
+  margin-left: 5px;
 }
 
 #tell-me {
